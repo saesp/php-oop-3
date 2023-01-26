@@ -225,7 +225,7 @@ class Salary
 
 // Oggetti/Istanze
 $salary = new Salary(3000, 1500, 750);
-$leader = new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', null, 50000, 10000, null);
+$leader = new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', '272HDHJS278WHS', 50000, 10000, null);
 
 $persons = [
         // new Person('Name', 'Surname', 'date_of_birth', 'place_of_birth', 'fiscal_code'),
@@ -239,8 +239,8 @@ $persons = [
         10000,
         $leader->getAnnualIncome()
     ),
-    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', $salary->getHtml(), '01/01/2022'),
 
+    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', $salary->getHtml(), '01/01/2022'),
 ];
 
 foreach ($persons as $person) {
