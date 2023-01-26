@@ -66,11 +66,11 @@ class Person
 
     public function getHtml()
     {
-        return $this->getName() . '<br>'
-            . $this->getSurname() . '<br>'
-            . $this->getDateOfBirth() . '<br>'
-            . $this->getPlaceOfBirth() . '<br>'
-            . $this->getFiscalCode();
+        return 'Name: ' . $this->getName() . '<br>'
+            . 'Surname: ' . $this->getSurname() . '<br>'
+            . 'Date of birth: ' . $this->getDateOfBirth() . '<br>'
+            . 'Place of birth: ' . $this->getPlaceOfBirth() . '<br>'
+            . 'Fiscal code: ' . $this->getFiscalCode();
     }
 }
 
@@ -78,13 +78,15 @@ class Leader extends Person
 {
     private $dividend;
     private $bonus;
+    private $income;
 
 
-    public function __construct($name, $surname, $dateOfBirth, $placeOfBirth, $fiscalCode, $dividend, $bonus)
+    public function __construct($name, $surname, $dateOfBirth, $placeOfBirth, $fiscalCode, $dividend, $bonus, $income)
     {
         parent::__construct($name, $surname, $dateOfBirth, $placeOfBirth, $fiscalCode);
         $this->setDividend($dividend);
         $this->setBonus($bonus);
+        $this->setIncome($income);
     }
 
     public function getDividend()
@@ -105,14 +107,28 @@ class Leader extends Person
         $this->bonus = $bonus;
     }
 
+    public function getIncome()
+    {
+        return $this->income;
+    }
+    public function setIncome($income)
+    {
+        $this->income = $income;
+    }
 
     public function getHtml()
     {
         return
             '<h3>Leader</h3>'
             . parent::getHtml() . '<br>'
-            . $this->getDividend() . '<br>'
-            . $this->getBonus() . '<br>';
+            . 'Dividend: ' . $this->getDividend() . '<br>'
+            . 'Bonus: ' . $this->getBonus() . '<br>'
+            . 'Income: ' . $this->getIncome();
+    }
+
+    public function getAnnualIncome()
+    {
+        return ($this->getDividend() * 12) + $this->getBonus() . '$ per year';
     }
 }
 
@@ -154,8 +170,8 @@ class Dipendent extends Person
         return
             '<h3>Dipendent</h3>'
             . parent::getHtml() . '<br>'
-            . $this->getSalary() . '<br>'
-            . $this->getDateOfRecruitment() . '<br>';
+            . 'Salary: ' . $this->getSalary() . '<br>'
+            . 'Date of recruitment: ' . $this->getDateOfRecruitment();
     }
 }
 
@@ -202,17 +218,27 @@ class Salary
 
     public function getHtml()
     {
-        return ($this->getmonthly() * 12) + $this->getthirteenth() + $this->getfourteenth() . '$ net';
+        return ($this->getmonthly() * 12) + $this->getthirteenth() + $this->getfourteenth() . '$ net per year';
     }
 }
 
 
 // Oggetti/Istanze
-$salary = new Salary(2500, 1250, 750);
+$salary = new Salary(3000, 1500, 750);
+$leader = new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', null, 50000, 10000, null);
 
 $persons = [
-    new Person('Name', 'Surname', 'date_of_birth', 'place_of_birth', 'fiscal_code'),
-    new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', '1727FAYS2128AH', 'dividend', 'bonus'),
+        // new Person('Name', 'Surname', 'date_of_birth', 'place_of_birth', 'fiscal_code'),
+    new Leader(
+        'Jennifer',
+        'Bianchi',
+        '10/01/1995',
+        'Napoli',
+        '272HDHJS278WHS',
+        50000,
+        10000,
+        $leader->getAnnualIncome()
+    ),
     new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', $salary->getHtml(), '01/01/2022'),
 
 ];
