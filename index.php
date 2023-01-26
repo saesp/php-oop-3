@@ -202,7 +202,7 @@ class Salary
 
     public function getHtml()
     {
-        return ($this->getmonthly() * 12) + $this->getthirteenth() + $this->getfourteenth();
+        return ($this->getmonthly() * 12) + $this->getthirteenth() + $this->getfourteenth() . '$ net';
     }
 }
 
