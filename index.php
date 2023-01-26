@@ -1,4 +1,5 @@
 <?php
+// Classes
 class Person
 {
     private $name;
@@ -123,12 +124,12 @@ class Leader extends Person
             . parent::getHtml() . '<br>'
             . 'Dividend: ' . $this->getDividend() . '<br>'
             . 'Bonus: ' . $this->getBonus() . '<br>'
-            . 'Income: ' . $this->getIncome();
+            . 'Annual income: ' . $this->getIncome();
     }
 
     public function getAnnualIncome()
     {
-        return ($this->getDividend() * 12) + $this->getBonus() . '$ per year';
+        return ($this->getDividend() * 12) + $this->getBonus() . '$';
     }
 }
 
@@ -223,7 +224,7 @@ class Salary
 }
 
 
-// Oggetti/Istanze
+// Objects
 $salary = new Salary(3000, 1500, 750);
 $leader = new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', '272HDHJS278WHS', 50000, 10000, null);
 
