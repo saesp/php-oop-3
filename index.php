@@ -166,7 +166,7 @@ class Dipendent extends Person
 $persons = [
     new Person('Name', 'Surname', 'date_of_birth', 'place_of_birth', 'fiscal_code'),
     new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', '1727FAYS2128AH', 'dividend', 'bonus'),
-    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', '2.500', '01/01/2022'),
+    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', 2500, '01/01/2022'),
 ];
 
 foreach ($persons as $person) {
