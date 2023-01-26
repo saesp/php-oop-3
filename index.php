@@ -159,14 +159,62 @@ class Dipendent extends Person
     }
 }
 
+class Salary
+{
+    private $monthly;
+    private $thirteenth;
+    private $fourteenth;
 
+
+    public function __construct($monthly, $thirteenth, $fourteenth)
+    {
+        $this->setmonthly($monthly);
+        $this->setthirteenth($thirteenth);
+        $this->setfourteenth($fourteenth);
+    }
+
+
+    public function getmonthly()
+    {
+        return $this->monthly;
+    }
+    public function setmonthly($monthly)
+    {
+        $this->monthly = $monthly;
+    }
+
+    public function getthirteenth()
+    {
+        return $this->thirteenth;
+    }
+    public function setthirteenth($thirteenth)
+    {
+        $this->thirteenth = $thirteenth;
+    }
+    public function getfourteenth()
+    {
+        return $this->fourteenth;
+    }
+    public function setfourteenth($fourteenth)
+    {
+        $this->fourteenth = $fourteenth;
+    }
+
+    public function getHtml()
+    {
+        return ($this->getmonthly() * 12) + $this->getthirteenth() + $this->getfourteenth();
+    }
+}
 
 
 // Oggetti/Istanze
+$salary = new Salary(2500, 1250, 750);
+
 $persons = [
     new Person('Name', 'Surname', 'date_of_birth', 'place_of_birth', 'fiscal_code'),
     new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', '1727FAYS2128AH', 'dividend', 'bonus'),
-    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', 2500, '01/01/2022'),
+    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', $salary->getHtml(), '01/01/2022'),
+
 ];
 
 foreach ($persons as $person) {
