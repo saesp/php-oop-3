@@ -1,7 +1,4 @@
 <?php
-
-// private $salary;
-// private $dateOfRecruitment;
 class Person
 {
     private $name;
@@ -119,11 +116,57 @@ class Leader extends Person
     }
 }
 
+class Dipendent extends Person
+{
+    private $salary;
+    private $dateOfRecruitment;
+
+
+    public function __construct($name, $surname, $dateOfBirth, $placeOfBirth, $fiscalCode, $salary, $dateOfRecruitment)
+    {
+        parent::__construct($name, $surname, $dateOfBirth, $placeOfBirth, $fiscalCode);
+        $this->setSalary($salary);
+        $this->setDateOfRecruitment($dateOfRecruitment);
+    }
+
+
+    public function getSalary()
+    {
+        return $this->salary;
+    }
+    public function setSalary($salary)
+    {
+        $this->salary = $salary;
+    }
+
+    public function getDateOfRecruitment()
+    {
+        return $this->dateOfRecruitment;
+    }
+    public function setDateOfRecruitment($dateOfRecruitment)
+    {
+        $this->dateOfRecruitment = $dateOfRecruitment;
+    }
+
+
+    public function getHtml()
+    {
+        return
+            '<h3>Dipendent</h3>'
+            . parent::getHtml() . '<br>'
+            . $this->getSalary() . '<br>'
+            . $this->getDateOfRecruitment() . '<br>';
+    }
+}
+
+
+
 
 // Oggetti/Istanze
 $persons = [
-    new Person(1, 2, 3, 4, 5),
-    new Leader(7, 8, 9, 10, 11, 12, 13),
+    new Person('Name', 'Surname', 'date_of_birth', 'place_of_birth', 'fiscal_code'),
+    new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', '1727FAYS2128AH', 'dividend', 'bonus'),
+    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', '2.500', '01/01/2022'),
 ];
 
 foreach ($persons as $person) {
