@@ -219,13 +219,14 @@ class Salary
 
     public function getHtml()
     {
-        return ($this->getmonthly() * 12) + $this->getthirteenth() + $this->getfourteenth() . '$ net per year';
+        return ($this->getmonthly() * 12) + ($this->getthirteenth() ? $this->getmonthly() : 0) + ($this->getfourteenth() ? $this->getmonthly() : 0) . '$ net per year';
     }
 }
 
 
 // Objects
-$salary = new Salary(3000, 1500, 750);
+$salary_rossi_marco = new Salary(2600, false, false);
+$salary_verdi_francesca = new Salary(3000, true, true);
 $leader = new Leader('Jennifer', 'Bianchi', '10/01/1995', 'Napoli', '272HDHJS278WHS', 50000, 10000, null);
 
 $persons = [
@@ -240,8 +241,8 @@ $persons = [
         10000,
         $leader->getAnnualIncome()
     ),
-
-    new Dipendent('Marco', 'Verdi', '20/03/1990', 'Torino', '27238SHEUE7383', $salary->getHtml(), '01/01/2022'),
+    new Dipendent('Marco', 'Rossi', '22/08/1993', 'Genova', 'RM2EYDH278SI24', $salary_rossi_marco->getHtml(), '08/02/2022'),
+    new Dipendent('Francesca', 'Verdi', '20/03/1990', 'Torino', 'VF238SHEUE7383', $salary_verdi_francesca->getHtml(), '01/01/2020'),
 ];
 
 foreach ($persons as $person) {
